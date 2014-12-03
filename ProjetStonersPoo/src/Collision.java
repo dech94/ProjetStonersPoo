@@ -1,0 +1,3 @@
+interface Collision {
+	void react();
+}
