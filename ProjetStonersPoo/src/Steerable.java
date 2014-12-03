@@ -1,4 +1,4 @@
-public interface Steerable {
-    public Direction getDirection();
-    public void setDirection(Direction dir);
+interface Steerable {
+	void getDirection();
+	void setDirection();
 }
