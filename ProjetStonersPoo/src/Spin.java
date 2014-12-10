@@ -6,7 +6,7 @@ class Spin extends Obstacle {
 		return "@";
 	}
 	@Override
-	public void react() {
+	public void react(Character c) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -1,3 +1,3 @@
 interface Collision {
-	void react();
+	void react(Character c);
 }

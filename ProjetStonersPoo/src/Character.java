@@ -5,6 +5,12 @@ abstract class Character extends Box implements Steerable{
 		super(p);
 		this.d = new Direction(d);
 	}
+	public Direction getDirection() {
+		return(this.d);
+	}
+	public void setDirection(Direction dir) {
+		this.d=new Direction(dir);
+	}
 	void Move(){
 		if(d.x == 1) {
 			if(d.y == 1){

@@ -14,5 +14,4 @@ class Direction {
 		this.x=d.x;
 		this.y=d.y;
 	}
-	
 }

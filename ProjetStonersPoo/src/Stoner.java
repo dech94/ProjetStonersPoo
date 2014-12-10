@@ -1,22 +1,22 @@
 class Stoner extends Character {
 
 	@Override
-	public void getDirection() {
+	public Direction getDirection() {
 		// TODO Auto-generated method stub
-		
+		return this.d;
 	}
 
 	@Override
-	public void setDirection() {
+	public void setDirection(Direction d) {
 		// TODO Auto-generated method stub
-		
+		this.d=d;
 	}
 	Stoner(Position p, Direction d){
 		super(p,d);
 	}
 
 	@Override
-	public void react() {
+	public void react(Character c) {
 		// TODO Auto-generated method stub
 		
 	}

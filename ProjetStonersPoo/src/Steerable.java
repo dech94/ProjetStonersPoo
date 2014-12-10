@@ -1,4 +1,4 @@
 interface Steerable {
-	void getDirection();
-	void setDirection();
+	Direction getDirection();
+	void setDirection(Direction d);
 }
