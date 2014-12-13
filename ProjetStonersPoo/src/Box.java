@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 abstract class Box {
 	protected Position p;
 	protected Box(Position p){
@@ -7,9 +9,9 @@ abstract class Box {
 		this.p=new Position();
 	}
 	public abstract String toString();
-	public abstract void react(Character c);
+	public abstract void react(Character box);
 	public void Move() {
 		// TODO Auto-generated method stub
-		
+	
 	}
 }

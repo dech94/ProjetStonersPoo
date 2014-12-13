@@ -1,7 +1,7 @@
 import com.sun.istack.internal.NotNull;
 
 class Position {
-	int x,y;
+	private int x,y;
 	Position(int x, int y) {
 		this.x=x;
 		this.y=y;
@@ -32,4 +32,22 @@ class Position {
         Position p1 = (Position) ob1, p2 = (Position) ob2;
         return ((p2.x + p2.y) - (p1.x + p1.y));
     }
+	void setPos(Position p){
+		this.equals(p);
+	}
+	void setX(int x){
+		this.x=x;
+	}
+	void setY(int y) {
+		this.y=y;
+	}
+	int getX(){
+		return this.x;
+	}
+	int getY(){
+		return this.y;
+	}
+	Position getPos(){
+		return this;
+	}
 }

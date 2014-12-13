@@ -18,10 +18,13 @@ abstract class Character extends Box implements Steerable{
 	}
 	public void Move(){
 		boolean occuper = false;
+		Position cible= new Position();
+		cible.setX((this.p.getX()+ this.d.x));
+		cible.setY((this.p.getY()+ this.d.y));
 		Iterator <Box> it = Game.obstacle.iterator();
 		while((it.hasNext())&&(occuper== false)){
-			Box currentP = (Box)it.next();
-			if(((this.p.x+this.d.x == currentP.p.x))&&(this.p.y+this.d.y == currentP.p.y)){
+			Box currentP = it.next();
+			if((currentP.p.equals(cible))){
 				currentP.react(this);
 				occuper = true;
 			}
@@ -103,7 +106,7 @@ abstract class Character extends Box implements Steerable{
 			}
 		}*/
 	void MoveNext(){
-		Game.t[this.p.x][this.p.y]=this;
+		Game.t[this.p.getX()][this.p.getY()]=this;
 	}
 	void Stop(){
 		this.stock=new Direction(d);

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 class Game {
 	final static int hauteur = 15;
@@ -16,8 +15,8 @@ class Game {
 		for(i=0;i<Game.hauteur+1;i++) {
 			for(j=0;j<Game.largeur+1;j++) {
 				k=(int)(Math.random()*((hauteur+largeur)/2));
-				p.x=i;
-				p.y=j;
+				p.setX(i);
+				p.setY(j);
 				d.x=(-1) + (int)(Math.random() * ((1 - (-1)) + 1));
 				d.y=(-1) + (int)(Math.random() * ((1 - (-1)) + 1));
 				if((i==0)||(i==hauteur)||(j==0)||(j==largeur)){
@@ -64,25 +63,20 @@ class Game {
 		}
 	}
 	private void Lap() throws InterruptedException{
-		Thread.sleep(100);
+		Thread.sleep(50);
 	}
 	void Play() throws InterruptedException {
 		int i,j,k=0;
 		boolean play=true;
-		Box c;
 		while(play){
 			System.out.println(this.toString());
 			Lap();
-			Iterator<Box> it = obstacle.iterator();
+			Iterator<Character> it = character.iterator();
 			while (it.hasNext()){
-				c=it.next();
+				Character c=it.next();
 				System.out.println(c.toString());
-				Lap();
-				if (c instanceof Character) {
-				c=((Character) c);
 				c.Move();
 				}
-				Lap();
 			}
 			for(i=0;i<hauteur+1;i++){
 				for(j=0;j<largeur+1;j++){
@@ -95,7 +89,6 @@ class Game {
 				play=false;
 			}
 		}
-	}
 	public String toString() {
 		int i,j;
 		String res="";
