@@ -3,9 +3,9 @@ import java.util.Iterator;
 class Game {
 	final static int hauteur = 15;
 	final static int largeur = 15;
-	static int taille=hauteur*largeur;
+	int taille=hauteur*largeur;
 	static Box[][]t=new Box[hauteur+1][largeur+1];
-	static ArrayList<Character>character=new ArrayList<Character>();
+	ArrayList<Character>character=new ArrayList<Character>();
 	static ArrayList<Box>obstacle= new ArrayList<Box>();
 	Game(int nbWalker, int nbStoner, int nbResurrector, int nbSpin,int nbWall){
 		int i,j,k;
