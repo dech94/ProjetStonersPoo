@@ -9,8 +9,8 @@ class Spin extends Obstacle {
 	public void react(Character c) {
 		// TODO Auto-generated method stub
 		Direction d = new Direction(c.getDirection());
-		d.x=((-1)+(int)Math.random()*(1-(-1)+1));
-		d.y=((-1)+(int)Math.random()*(1-(-1)+1));
+		d.setX(((-1)+(int)Math.random()*(1-(-1)+1)));
+		d.setY(((-1)+(int)Math.random()*(1-(-1)+1)));
 		c.setDirection(d);
 	}
 	@Override

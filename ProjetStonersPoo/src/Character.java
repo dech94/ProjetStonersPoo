@@ -7,7 +7,7 @@ abstract class Character extends Box implements Steerable{
 	boolean isPetrified;
 	int test=5;
 	Character(Position p, Direction d){
-		super(p);
+		this.p=new Position(p);
 		this.d = new Direction(d);
 		isPetrified=false;
 	}
@@ -20,9 +20,9 @@ abstract class Character extends Box implements Steerable{
 	public void Move(){
 		boolean occuper = false;
 		Position cible= new Position();
-		cible.setX((this.p.getX()+ this.d.x));
-		cible.setY((this.p.getY()+ this.d.y));
-		Iterator <Box> it = Game.obstacle.iterator();
+		cible.setX((this.p.getX()+ this.d.getX()));
+		cible.setY((this.p.getY()+ this.d.getY()));
+		Iterator <Box> it = Game.getObstacle().iterator();
 		while((it.hasNext())&&(occuper== false)){
 			Box currentP = it.next();
 			if(currentP.p.equals(cible)){
@@ -107,12 +107,12 @@ abstract class Character extends Box implements Steerable{
 			}
 		}*/
 	void MoveNext(Position p){
-		Game.t[p.getX()][p.getY()]=this;
+		Game.getT()[p.getX()][p.getY()]=this;
 	}
 	void Stop(){
 		this.stock=new Direction(d);
-		this.d.x=0;
-		this.d.y=0;
+		this.d.setX(0);
+		this.d.setY(0);
 		isPetrified=true;
 	}
 	void Run(){
@@ -127,11 +127,11 @@ abstract class Character extends Box implements Steerable{
 			if(c instanceof Stoner){
 				this.Stop();
 			}else{
-				this.d.x=-this.d.x;
-				this.d.y=-this.d.y;
+				this.d.setX(-this.d.getX());
+				this.d.setY(-this.d.getY());
 				if(!c.isPetrified){
-					d.x=-d.x;
-					d.y=-d.y;
+					d.setX(-d.getX());
+					d.setY(-d.getY());
 					c.setDirection(d);
 				}
 			}

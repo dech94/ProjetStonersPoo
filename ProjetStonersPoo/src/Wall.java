@@ -9,8 +9,8 @@ class Wall extends Obstacle {
 	public void react(Character c) {
 		// TODO Auto-generated method stub
 		Direction d = new Direction(c.getDirection());
-		d.x=-d.x;
-		d.y=-d.y;
+		d.setX(-d.getX());
+		d.setY(-d.getY());
 		c.setDirection(d);
 	}
 	@Override

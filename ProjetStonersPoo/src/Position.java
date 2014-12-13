@@ -1,4 +1,4 @@
-import com.sun.istack.internal.NotNull;
+
 
 class Position {
 	private int x,y;
@@ -15,8 +15,8 @@ class Position {
 		this.y=0;
 	}
 	boolean isValid(){
-		if(x>0 && x<Game.largeur){
-			if(y>0 && y<Game.hauteur){
+		if(x>0 && x<Game.getLargeur()){
+			if(y>0 && y<Game.getHauteur()){
 				return true;
 			}else{
 				return false;
