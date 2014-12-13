@@ -1,9 +1,15 @@
-abstract class Box implements Collision{
+abstract class Box {
 	protected Position p;
 	protected Box(Position p){
 		this.p = new Position (p);
 	}
-	public String toString() {
-		return null;
+	protected Box(){
+		this.p=new Position();
+	}
+	public abstract String toString();
+	public abstract void react(Character c);
+	public void Move() {
+		// TODO Auto-generated method stub
+		
 	}
 }

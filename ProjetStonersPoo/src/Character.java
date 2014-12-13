@@ -1,51 +1,140 @@
+import java.util.Iterator;
+
 abstract class Character extends Box implements Steerable{
 	Direction d;
+	Direction stock;
 	Position p;
+	boolean isPetrified;
 	Character(Position p, Direction d){
 		super(p);
 		this.d = new Direction(d);
+		isPetrified=false;
 	}
 	public Direction getDirection() {
 		return(this.d);
 	}
-	public void setDirection(Direction dir) {
-		this.d=new Direction(dir);
+	public void setDirection(Direction d) {
+		this.d=new Direction(d);
 	}
-	void Move(){
-		if(d.x == 1) {
-			if(d.y == 1){
-				p.x++;
-				p.y++;
-			}else {
-				if(d.y == -1){
-					p.x++;
-					p.y--;
-				}else{
-					p.x++;
-				}
+	public void Move(){
+		boolean occuper = false;
+		Iterator <Box> it = Game.obstacle.iterator();
+		while((it.hasNext())&&(occuper== false)){
+			Box currentP = (Box)it.next();
+			if(((this.p.x+this.d.x == currentP.p.x))&&(this.p.y+this.d.y == currentP.p.y)){
+				currentP.react(this);
+				occuper = true;
 			}
-		}else{
-			if(d.x == -1){
+		}
+		MoveNext();
+	}
+		/*Position next=p;
+		if(next.isValid()){
+			if(d.x == 1) {
 				if(d.y == 1){
-					p.x--;
-					p.y++;
+					next.x++;
+					next.y++;
 				}else {
 					if(d.y == -1){
-						p.x--;
-						p.y--;
+						next.x++;
+						next.y--;
 					}else{
-						p.x++;
+						next.x++;
 					}
 				}
 			}else{
-				if(d.y == 1){
-					p.y++;
-				}else {
-					if(d.y == -1){
-						p.y--;
+				if(d.x == -1){
+					if(d.y == 1){
+						next.x--;
+						next.y++;
+					}else {
+						if(d.y == -1){
+							next.x--;
+							next.y--;
+						}else{
+							next.x--;
+						}
+					}
+				}else{
+					if(d.y == 1){
+						next.y++;
+					}else {
+						if(d.y == -1){
+							next.y--;
+						}
 					}
 				}
 			}
+		}else{
+			if(d.x == 1) {
+				if(d.y == 1){
+					next.x=Game.largeur;
+					next.y=Game.largeur;
+				}else {
+					if(d.y == -1){
+						next.x=Game.largeur;
+						next.y=0;
+					}else{
+						next.x=Game.largeur;
+					}
+				}
+			}else{
+				if(d.x == -1){
+					if(d.y == 1){
+						next.x=0;
+						next.y=Game.largeur;
+					}else {
+						if(d.y == -1){
+							next.x=0;
+							next.y=0;
+						}else{
+							next.x=0;
+						}
+					}
+				}else{
+					if(d.y == 1){
+						next.y=Game.largeur;
+					}else {
+						if(d.y == -1){
+							next.y=0;
+						}
+					}
+				}
+			}
+		}*/
+	void MoveNext(){
+		Game.t[this.p.x][this.p.y]=this;
+	}
+	void Stop(){
+		this.stock=new Direction(d);
+		this.d.x=0;
+		this.d.y=0;
+		isPetrified=true;
+	}
+	void Run(){
+		isPetrified=false;
+		this.d=new Direction(stock);
+	}
+	public void react(Character c){
+		Direction d = new Direction(c.getDirection());
+		if(c instanceof Resurrector){
+			this.Run();
+		}else{
+			if(c instanceof Stoner){
+				this.Stop();
+			}else{
+				this.d.x=-this.d.x;
+				this.d.y=-this.d.y;
+				if(!c.isPetrified){
+					d.x=-d.x;
+					d.y=-d.y;
+					c.setDirection(d);
+				}
+			}
 		}
+	}
+	public void react(Box box) {
+		// TODO Auto-generated method stub
+		box.react(this);
 	}
 }

@@ -8,6 +8,6 @@ class Vide extends Box {
 	@Override
 	public void react(Character c) {
 		// TODO Auto-generated method stub
-		
+		c.p=new Position(this.p);
 	}
 }
