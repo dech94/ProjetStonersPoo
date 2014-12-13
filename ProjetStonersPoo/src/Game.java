@@ -17,42 +17,50 @@ class Game {
 				k=(int)(Math.random()*((hauteur+largeur)/2));
 				p.setX(i);
 				p.setY(j);
+				System.out.println(p.getX()+";"+p.getY());
 				d.x=(-1) + (int)(Math.random() * ((1 - (-1)) + 1));
 				d.y=(-1) + (int)(Math.random() * ((1 - (-1)) + 1));
 				if((i==0)||(i==hauteur)||(j==0)||(j==largeur)){
-					t[i][j]=new Wall(p);
-					obstacle.add(new Wall(p));
+					Wall w = new Wall(p);
+					t[i][j]=w;
+					obstacle.add(w);
 				}else{
 					if(k==0 && nbWalker>0){
-						t[i][j]=new Walker(p,d);
-						character.add(new Walker(p,d));
-						obstacle.add(new Walker(p,d));
+						Walker w = new Walker(p,d);
+						t[i][j]=w;
+						character.add(w);
+						obstacle.add(w);
 						nbWalker--;
 					}else{
 						if(k==1 && nbStoner>0){
-							t[i][j]=new Stoner(p,d);
-							character.add(new Stoner(p,d));
-							obstacle.add(new Stoner(p,d));
+							Stoner s = new Stoner(p,d);
+							t[i][j]=s;
+							character.add(s);
+							obstacle.add(s);
 							nbStoner--;
 						}else{
 							if(k==2 && nbResurrector>0){
-								t[i][j]=new Resurrector(p,d);
-								character.add(new Resurrector(p,d));
-								obstacle.add(new Resurrector(p,d));
+								Resurrector r = new Resurrector(p,d);
+								t[i][j]=r;
+								character.add(r);
+								obstacle.add(r);
 								nbResurrector--;
 							}else{
 								if(k==3 && nbSpin>0){
-									t[i][j]=new Spin(p);
-									obstacle.add(new Spin(p));
+									Spin s = new Spin(p);
+									t[i][j]=s;
+									obstacle.add(s);
 									nbSpin--;
 								}else{
 									if(k==4 && nbWall>0){
-										t[i][j]=new Wall(p);
-										obstacle.add(new Wall(p));
+										Wall w = new Wall(p);
+										t[i][j]=w;
+										obstacle.add(w);
 										nbWall--;
 									}else{
-										t[i][j]=new Vide(p);
-										obstacle.add(new Vide(p));
+										Vide v = new Vide(p);
+										t[i][j]=v;
+										obstacle.add(v);
 									}
 								}
 							}
@@ -75,17 +83,15 @@ class Game {
 			while (it.hasNext()){
 				Character c=it.next();
 				System.out.println(c.toString());
-				c.Move();
-				}
-			}
-			for(i=0;i<hauteur+1;i++){
-				for(j=0;j<largeur+1;j++){
-					
+				System.out.println("Caractere="+c.test);
+				System.out.println("direction="+c.d.x+";"+c.d.y);
+				System.out.println("position ="+c.p);
+				//c.Move();
 				}
 			}
 			k++;
 			System.out.println("\n------------------------------------------------\n\n");
-			if(k==10){
+			if(k==2){
 				play=false;
 			}
 		}

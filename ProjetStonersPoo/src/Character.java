@@ -5,6 +5,7 @@ abstract class Character extends Box implements Steerable{
 	Direction stock;
 	Position p;
 	boolean isPetrified;
+	int test=5;
 	Character(Position p, Direction d){
 		super(p);
 		this.d = new Direction(d);
@@ -24,12 +25,12 @@ abstract class Character extends Box implements Steerable{
 		Iterator <Box> it = Game.obstacle.iterator();
 		while((it.hasNext())&&(occuper== false)){
 			Box currentP = it.next();
-			if((currentP.p.equals(cible))){
+			if(currentP.p.equals(cible)){
 				currentP.react(this);
 				occuper = true;
 			}
 		}
-		MoveNext();
+		MoveNext(p);
 	}
 		/*Position next=p;
 		if(next.isValid()){
@@ -105,8 +106,8 @@ abstract class Character extends Box implements Steerable{
 				}
 			}
 		}*/
-	void MoveNext(){
-		Game.t[this.p.getX()][this.p.getY()]=this;
+	void MoveNext(Position p){
+		Game.t[p.getX()][p.getY()]=this;
 	}
 	void Stop(){
 		this.stock=new Direction(d);
