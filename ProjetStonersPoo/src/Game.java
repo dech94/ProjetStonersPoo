@@ -1,14 +1,17 @@
 import java.util.ArrayList;
 import java.util.Iterator;
 class Game {
-	final static int hauteur = 15;
-	final static int largeur = 15;
-	int taille=hauteur*largeur;
-	static Box[][]t=new Box[hauteur+1][largeur+1];
-	ArrayList<Character>character=new ArrayList<Character>();
-	static ArrayList<Box>obstacle= new ArrayList<Box>();
+	private final static int hauteur = 15;
+	private final static int largeur = 15;
+	private int taille=hauteur*largeur;
+	private Box[][]t;
+	private ArrayList<Character>character;
+	private ArrayList<Box> obstacle;
 	Game(int nbWalker, int nbStoner, int nbResurrector, int nbSpin,int nbWall){
 		int i,j,k;
+		obstacle = new ArrayList<Box>();
+		character = new ArrayList<Character>();
+		t = new Box[hauteur+1][largeur+1];
 		Position p=new Position(0,0);
 		Direction d = new Direction(0,0);
 		//int nbVide=hauteur*largeur-nbWalker-nbStoner-nbResurrector-nbSpin-nbWall;
