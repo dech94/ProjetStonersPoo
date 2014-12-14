@@ -1,40 +1,53 @@
-import java.util.Iterator;
-
+/*
+ * Abstract Class Character implements Steerable and Collision Interface 
+ * @author Jules Wacquier et Jeremy Bourde
+ * @version 1
+ */
 abstract class Character extends Box implements Steerable, Collision{
-	Direction d;
-	Direction stock;
-	Position p;
+	Direction dirChar;
+	Direction tmp;
+	Position posChar;
 	boolean isPetrified;
+	/*
+	 * Constructeur Character
+	 * @param Position p, Direction d
+	 */
 	Character(Position p, Direction d){
-		this.p=new Position(p);
-		this.d = new Direction(d);
+		this.posChar=new Position(p);
+		this.dirChar = new Direction(d);
 		isPetrified=false;
 	}
+	/*
+	 * (non-Javadoc)
+	 * @see Steerable#getDirection()
+	 */
 	public Direction getDirection() {
-		return(this.d);
+		return(this.dirChar);
 	}
+	/*
+	 * (non-Javadoc)
+	 * @see Steerable#setDirection(Direction)
+	 */
 	public void setDirection(Direction d) {
-		this.d=new Direction(d);
+		this.dirChar=new Direction(d);
 	}
 	public void Move(){
-		int i,j;
 		boolean deplacement=false;
 		Box t[][]=Game.getT();
 		Position cible= new Position();
-		cible.setX((this.p.getX()+ this.d.getX()));
-		cible.setY((this.p.getY()+ this.d.getY()));
+		cible.setX((this.posChar.getX()+ this.dirChar.getX()));
+		cible.setY((this.posChar.getY()+ this.dirChar.getY()));
 				Box currentP = t[cible.getX()][cible.getY()];
-				if(currentP.p.equals(cible)){
+				if(currentP.posBox.equals(cible)){
 					this.react(currentP);
 		}
-		//if(cible.getX()!=0 || cible.getY()!=0 || cible.getX()!=Game.getLargeur() || cible.getY()!=Game.getHauteur()){
 		if(currentP.isVide) {
 			deplacement=true;
 		}
 		if(deplacement){
-		Game.getT()[this.p.getX()][this.p.getY()]=new Vide(this.p);
-		this.p.setX(cible.getX());
-		this.p.setY(cible.getY());
+		Game.getT()[this.posChar.getX()][this.posChar.getY()]=new Vide(this.posChar);
+		this.posChar.setX(cible.getX());
+		this.posChar.setY(cible.getY());
 		Game.getT()[cible.getX()][cible.getY()]=this;
 		}
 	}
@@ -42,14 +55,14 @@ abstract class Character extends Box implements Steerable, Collision{
 		
 	}
 	void Stop(){
-		this.stock=new Direction(d);
-		this.d.setX(0);
-		this.d.setY(0);
+		this.tmp=new Direction(dirChar);
+		this.dirChar.setX(0);
+		this.dirChar.setY(0);
 		isPetrified=true;
 	}
 	void Run(){
 		isPetrified=false;
-		this.d=new Direction(stock);
+		this.dirChar=new Direction(tmp);
 	}
 	public void react(Box c){
 		
@@ -64,8 +77,8 @@ abstract class Character extends Box implements Steerable, Collision{
 			}else{
 				if(c instanceof Walker){
 					System.out.println("changement 3");
-					((Walker) c).d.setX(-((Walker) c).d.getX());
-					((Walker) c).d.setY(-((Walker) c).d.getY());
+					((Walker) c).dirChar.setX(-((Walker) c).dirChar.getX());
+					((Walker) c).dirChar.setY(-((Walker) c).dirChar.getY());
 					if(!this.isPetrified){
 						System.out.println("changement 4");
 						d.setX(-d.getX());

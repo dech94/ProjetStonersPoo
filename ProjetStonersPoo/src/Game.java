@@ -3,7 +3,6 @@ import java.util.Iterator;
 class Game {
 	private final static int hauteur = 15;
 	private final static int largeur = 15;
-	private int taille=getHauteur()*getLargeur();
 	private static Box[][]t;
 	private ArrayList<Character>listeCharacter;
 	Game(int nbWalker, int nbStoner, int nbResurrector, int nbSpin,int nbWall){
@@ -68,7 +67,7 @@ class Game {
 		Thread.sleep(2000);
 	}
 	void Play() throws InterruptedException {
-		int i,j,k=0;
+		int k=0;
 		boolean play=true;
 		while(play){
 			System.out.println(this.toString());
@@ -77,8 +76,8 @@ class Game {
 			while (it.hasNext()){
 				Character c=it.next();
 				System.out.println(c.toString());
-				System.out.println("direction="+c.d.getX()+";"+c.d.getY());
-				System.out.println("position ="+c.p.getX()+";"+c.p.getY());
+				System.out.println("direction="+c.dirChar.getX()+";"+c.dirChar.getY());
+				System.out.println("position ="+c.posChar.getX()+";"+c.posChar.getY());
 				c.Move();
 				}
 			}
@@ -109,7 +108,7 @@ class Game {
 		return t;
 	}
 	public void setT(Box[][] t) {
-		this.t = t;
+		Game.t = t;
 	}
 }
 	
