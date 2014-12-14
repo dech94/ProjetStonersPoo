@@ -5,12 +5,10 @@ class Game {
 	private final static int largeur = 15;
 	private int taille=getHauteur()*getLargeur();
 	private static Box[][]t;
-	private ArrayList<Character>character;
-	private static ArrayList<Box> obstacle;
+	private ArrayList<Character>listeCharacter;
 	Game(int nbWalker, int nbStoner, int nbResurrector, int nbSpin,int nbWall){
 		int i,j,k;
-		setObstacle(new ArrayList<Box>());
-		character = new ArrayList<Character>();
+		listeCharacter = new ArrayList<Character>();
 		setT(new Box[getHauteur()+1][getLargeur()+1]);
 		Position p=new Position(0,0);
 		Direction d = new Direction(0,0);
@@ -26,44 +24,37 @@ class Game {
 				if((i==0)||(i==getHauteur())||(j==0)||(j==getLargeur())){
 					Wall w = new Wall(p);
 					getT()[i][j]=w;
-					getObstacle().add(w);
 				}else{
 					if(k==0 && nbWalker>0){
 						Walker w = new Walker(p,d);
 						getT()[i][j]=w;
-						character.add(w);
-						getObstacle().add(w);
+						listeCharacter.add(w);
 						nbWalker--;
 					}else{
 						if(k==1 && nbStoner>0){
 							Stoner s = new Stoner(p,d);
 							getT()[i][j]=s;
-							character.add(s);
-							getObstacle().add(s);
+							listeCharacter.add(s);
 							nbStoner--;
 						}else{
 							if(k==2 && nbResurrector>0){
 								Resurrector r = new Resurrector(p,d);
 								getT()[i][j]=r;
-								character.add(r);
-								getObstacle().add(r);
+								listeCharacter.add(r);
 								nbResurrector--;
 							}else{
 								if(k==3 && nbSpin>0){
 									Spin s = new Spin(p);
 									getT()[i][j]=s;
-									getObstacle().add(s);
 									nbSpin--;
 								}else{
 									if(k==4 && nbWall>0){
 										Wall w = new Wall(p);
 										getT()[i][j]=w;
-										getObstacle().add(w);
 										nbWall--;
 									}else{
 										Vide v = new Vide(p);
 										getT()[i][j]=v;
-										getObstacle().add(v);
 									}
 								}
 							}
@@ -74,7 +65,7 @@ class Game {
 		}
 	}
 	private void Lap() throws InterruptedException{
-		Thread.sleep(50);
+		Thread.sleep(2000);
 	}
 	void Play() throws InterruptedException {
 		int i,j,k=0;
@@ -82,11 +73,10 @@ class Game {
 		while(play){
 			System.out.println(this.toString());
 			Lap();
-			Iterator<Character> it = character.iterator();
+			Iterator<Character> it = listeCharacter.iterator();
 			while (it.hasNext()){
 				Character c=it.next();
 				System.out.println(c.toString());
-				System.out.println("Caractere="+c.test);
 				System.out.println("direction="+c.d.getX()+";"+c.d.getY());
 				System.out.println("position ="+c.p.getX()+";"+c.p.getY());
 				c.Move();
@@ -114,12 +104,6 @@ class Game {
 	}
 	public static int getHauteur() {
 		return hauteur;
-	}
-	public static ArrayList<Box> getObstacle() {
-		return obstacle;
-	}
-	public void setObstacle(ArrayList<Box> obstacle) {
-		this.obstacle = obstacle;
 	}
 	public static Box[][] getT() {
 		return t;

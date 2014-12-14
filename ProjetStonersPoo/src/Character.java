@@ -1,11 +1,10 @@
 import java.util.Iterator;
 
-abstract class Character extends Box implements Steerable{
+abstract class Character extends Box implements Steerable, Collision{
 	Direction d;
 	Direction stock;
 	Position p;
 	boolean isPetrified;
-	int test=5;
 	Character(Position p, Direction d){
 		this.p=new Position(p);
 		this.d = new Direction(d);
@@ -18,96 +17,29 @@ abstract class Character extends Box implements Steerable{
 		this.d=new Direction(d);
 	}
 	public void Move(){
-		boolean occuper = false;
+		int i,j;
+		boolean deplacement=false;
+		Box t[][]=Game.getT();
 		Position cible= new Position();
 		cible.setX((this.p.getX()+ this.d.getX()));
 		cible.setY((this.p.getY()+ this.d.getY()));
-		Iterator <Box> it = Game.getObstacle().iterator();
-		while((it.hasNext())&&(occuper== false)){
-			Box currentP = it.next();
-			if(currentP.p.equals(cible)){
-				currentP.react(this);
-				occuper = true;
-			}
+				Box currentP = t[cible.getX()][cible.getY()];
+				if(currentP.p.equals(cible)){
+					this.react(currentP);
 		}
-		MoveNext(p);
+		//if(cible.getX()!=0 || cible.getY()!=0 || cible.getX()!=Game.getLargeur() || cible.getY()!=Game.getHauteur()){
+		if(currentP.isVide) {
+			deplacement=true;
+		}
+		if(deplacement){
+		Game.getT()[this.p.getX()][this.p.getY()]=new Vide(this.p);
+		this.p.setX(cible.getX());
+		this.p.setY(cible.getY());
+		Game.getT()[cible.getX()][cible.getY()]=this;
+		}
 	}
-		/*Position next=p;
-		if(next.isValid()){
-			if(d.x == 1) {
-				if(d.y == 1){
-					next.x++;
-					next.y++;
-				}else {
-					if(d.y == -1){
-						next.x++;
-						next.y--;
-					}else{
-						next.x++;
-					}
-				}
-			}else{
-				if(d.x == -1){
-					if(d.y == 1){
-						next.x--;
-						next.y++;
-					}else {
-						if(d.y == -1){
-							next.x--;
-							next.y--;
-						}else{
-							next.x--;
-						}
-					}
-				}else{
-					if(d.y == 1){
-						next.y++;
-					}else {
-						if(d.y == -1){
-							next.y--;
-						}
-					}
-				}
-			}
-		}else{
-			if(d.x == 1) {
-				if(d.y == 1){
-					next.x=Game.largeur;
-					next.y=Game.largeur;
-				}else {
-					if(d.y == -1){
-						next.x=Game.largeur;
-						next.y=0;
-					}else{
-						next.x=Game.largeur;
-					}
-				}
-			}else{
-				if(d.x == -1){
-					if(d.y == 1){
-						next.x=0;
-						next.y=Game.largeur;
-					}else {
-						if(d.y == -1){
-							next.x=0;
-							next.y=0;
-						}else{
-							next.x=0;
-						}
-					}
-				}else{
-					if(d.y == 1){
-						next.y=Game.largeur;
-					}else {
-						if(d.y == -1){
-							next.y=0;
-						}
-					}
-				}
-			}
-		}*/
-	void MoveNext(Position p){
-		Game.getT()[p.getX()][p.getY()]=this;
+	public void MoveTo(){
+		
 	}
 	void Stop(){
 		this.stock=new Direction(d);
@@ -119,26 +51,49 @@ abstract class Character extends Box implements Steerable{
 		isPetrified=false;
 		this.d=new Direction(stock);
 	}
-	public void react(Character c){
-		Direction d = new Direction(c.getDirection());
+	public void react(Box c){
+		
+		Direction d = new Direction(this.getDirection());
 		if(c instanceof Resurrector){
-			this.Run();
+			System.out.println("changement 1");
+			((Resurrector) c).Run();
 		}else{
 			if(c instanceof Stoner){
-				this.Stop();
+				System.out.println("changement 2");
+				((Stoner) c).Stop();
 			}else{
-				this.d.setX(-this.d.getX());
-				this.d.setY(-this.d.getY());
-				if(!c.isPetrified){
-					d.setX(-d.getX());
-					d.setY(-d.getY());
-					c.setDirection(d);
+				if(c instanceof Walker){
+					System.out.println("changement 3");
+					((Walker) c).d.setX(-((Walker) c).d.getX());
+					((Walker) c).d.setY(-((Walker) c).d.getY());
+					if(!this.isPetrified){
+						System.out.println("changement 4");
+						d.setX(-d.getX());
+						d.setY(-d.getY());
+						this.setDirection(d);
+					}
+				}else{
+					if (c instanceof Wall){
+						System.out.println("changement 5");
+						d.setX(-d.getX());
+						d.setY(-d.getY());
+						this.setDirection(d);
+					}else{
+						if(c instanceof Spin){
+							System.out.println("changement 6");
+							d.setX(((-1)+(int)Math.random()*(1-(-1)+1)));
+							d.setY(((-1)+(int)Math.random()*(1-(-1)+1)));
+							this.setDirection(d);
+						}else{
+							if(c instanceof Vide){
+								System.out.println("rien");
+							}else{
+								System.out.println("bug");
+							}
+						}
+					}
 				}
 			}
 		}
-	}
-	public void react(Box box) {
-		// TODO Auto-generated method stub
-		box.react(this);
 	}
 }

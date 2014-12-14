@@ -1,4 +1,4 @@
-abstract class Obstacle extends Box implements Collision {
+abstract class Obstacle extends Box {
 	public abstract String toString();
 	protected Obstacle(){
 		super();
@@ -6,5 +6,4 @@ abstract class Obstacle extends Box implements Collision {
 	protected Obstacle(Position p){
 		super(p);
 	}
-	public abstract void react(Character c);
 }
