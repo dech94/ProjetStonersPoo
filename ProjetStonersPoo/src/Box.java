@@ -1,14 +1,15 @@
 /*
  * Classe abstraite des personnages, de la classe obstacle et de la classe Vide
- * @author Jules Wacquier et Jeremy Bourde
- * @version 1
+ * @author Jules Wacquier & Jeremy Bourde
+ * @version 1.2
  */
-abstract class Box {
+public abstract class Box {
 	protected Position posBox;
 	protected boolean isVide;
 	/*
 	 * Constructeur Box
-	 * @param Position 
+	 * @param p
+	 * 		Position de la future box 
 	 */
 	protected Box(Position p){
 		this.posBox = new Position (p);
@@ -18,7 +19,7 @@ abstract class Box {
 	 * Constructeur Box vide
 	 */
 	protected Box(){
-		this.posBox=new Position();
+		this.posBox=new Position(0,0);
 	}
 	/*
 	 * (non-Javadoc)

@@ -1,19 +1,40 @@
+/*
+ * Classe Game permettant d'initialiser le jeu
+ * @author Jules Wacquier & Jeremy Bourde
+ * @version 5.0
+ */
 import java.util.ArrayList;
 import java.util.Iterator;
 class Game {
-	private final static int hauteur = 15;
-	private final static int largeur = 15;
+	int hauteur;
+	int largeur;
+	int time;
 	private static Box[][]t;
 	private ArrayList<Character>listeCharacter;
-	Game(int nbWalker, int nbStoner, int nbResurrector, int nbSpin,int nbWall){
+	/*
+	 * Constructeur d'une partie aléatoire
+	 * @param nbWalker
+	 * 			nombre de Walker
+	 * @param nbStoner
+	 * 			nombre de Stoner
+	 * @param nbResurrector
+	 * 			nombre de Resurrector
+	 * @param nbSpin
+	 * 			nombre de Spin
+	 * @param nbWall
+	 * 			nombre de Wall (sans compter les limites du jeu
+	 */
+	Game(int nbWalker, int nbStoner, int nbResurrector, int nbSpin,int nbWall,int hauteur, int largeur, int time){
 		int i,j,k;
+		this.hauteur=hauteur;
+		this.largeur=largeur;
+		this.time=time;
 		listeCharacter = new ArrayList<Character>();
 		setT(new Box[getHauteur()+1][getLargeur()+1]);
 		Position p=new Position(0,0);
 		Direction d = new Direction(0,0);
-		//int nbVide=hauteur*largeur-nbWalker-nbStoner-nbResurrector-nbSpin-nbWall;
-		for(i=0;i<Game.getHauteur()+1;i++) {
-			for(j=0;j<Game.getLargeur()+1;j++) {
+		for(i=0;i<this.getHauteur()+1;i++) {
+			for(j=0;j<this.getLargeur()+1;j++) {
 				k=(int)(Math.random()*((getHauteur()+getLargeur())/2));
 				p.setX(i);
 				p.setY(j);
@@ -63,22 +84,25 @@ class Game {
 			}
 		}
 	}
-	private void Lap() throws InterruptedException{
-		Thread.sleep(2000);
+	/*
+	 * methode permetant de mettre en pause le Thread principal
+	 */
+	private void Lap(int x) throws InterruptedException{
+		Thread.sleep(x);
 	}
 	void Play() throws InterruptedException {
 		int k=0;
 		boolean play=true;
 		while(play){
 			System.out.println(this.toString());
-			Lap();
+			Lap(time);
 			Iterator<Character> it = listeCharacter.iterator();
 			while (it.hasNext()){
 				Character c=it.next();
 				System.out.println(c.toString());
 				System.out.println("direction="+c.dirChar.getX()+";"+c.dirChar.getY());
 				System.out.println("position ="+c.posChar.getX()+";"+c.posChar.getY());
-				c.Move();
+				c.move();
 				}
 			}
 			k++;
@@ -98,10 +122,10 @@ class Game {
 		}
 		return res;
 	}
-	public static int getLargeur() {
+	public int getLargeur() {
 		return largeur;
 	}
-	public static int getHauteur() {
+	public int getHauteur() {
 		return hauteur;
 	}
 	public static Box[][] getT() {

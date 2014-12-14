@@ -1,14 +1,15 @@
 /*
  * Classe Vide permetant au personnages de se déplacer.
- * @author Jules Wacquier et Jeremy Bourde
- * @version 1
+ * @author Jules Wacquier & Jeremy Bourde
+ * @version 1.3
  */
-class Vide extends Box {
+public class Vide extends Box {
 	/*
 	 * Constructeur Vide
-	 * @param Position p
+	 * @param p
+	 * 		Position de la future case Vide
 	 */
-	Vide(Position p){
+	public Vide(Position p){
 		super(p);
 		this.isVide=true;
 	}

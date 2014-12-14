@@ -1,9 +1,9 @@
 /*
  * Classe abstraite des des obstacles.
- * @author Jules Wacquier et Jeremy Bourde
- * @version 1
+ * @author Jules Wacquier & Jeremy Bourde
+ * @version 1.2
  */
-abstract class Obstacle extends Box {
+public abstract class Obstacle extends Box {
 	/*
 	 * (non-Javadoc)
 	 * @see Box#toString()
@@ -17,7 +17,8 @@ abstract class Obstacle extends Box {
 	}
 	/*
 	 * Constructeur Obstacle
-	 * @param Position p
+	 * @param p
+	 * 		Position du futur obstacle
 	 */
 	protected Obstacle(Position p){
 		super(p);

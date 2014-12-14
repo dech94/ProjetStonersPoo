@@ -1,18 +1,21 @@
 /*
  * Abstract Class Character implements Steerable and Collision Interface 
- * @author Jules Wacquier et Jeremy Bourde
- * @version 1
+ * @author Jules Wacquier & Jeremy Bourde
+ * @version 3.0
  */
-abstract class Character extends Box implements Steerable, Collision{
-	Direction dirChar;
-	Direction tmp;
-	Position posChar;
-	boolean isPetrified;
+public abstract class Character extends Box implements Steerable, Collision{
+	protected Direction dirChar;
+	protected Direction tmp;
+	protected Position posChar;
+	protected boolean isPetrified;
 	/*
 	 * Constructeur Character
-	 * @param Position p, Direction d
+	 * @param p
+	 * 		Position du futur personnage
+	 * @param d
+	 * 		Direction du futur personnage
 	 */
-	Character(Position p, Direction d){
+	public Character(Position p, Direction d){
 		this.posChar=new Position(p);
 		this.dirChar = new Direction(d);
 		isPetrified=false;
@@ -31,10 +34,13 @@ abstract class Character extends Box implements Steerable, Collision{
 	public void setDirection(Direction d) {
 		this.dirChar=new Direction(d);
 	}
-	public void Move(){
+	/*
+	 * Methode permetant de déplacer le personnage
+	 */
+	public void move(){
 		boolean deplacement=false;
 		Box t[][]=Game.getT();
-		Position cible= new Position();
+		Position cible= new Position(0,0);
 		cible.setX((this.posChar.getX()+ this.dirChar.getX()));
 		cible.setY((this.posChar.getY()+ this.dirChar.getY()));
 				Box currentP = t[cible.getX()][cible.getY()];
@@ -51,19 +57,26 @@ abstract class Character extends Box implements Steerable, Collision{
 		Game.getT()[cible.getX()][cible.getY()]=this;
 		}
 	}
-	public void MoveTo(){
-		
-	}
-	void Stop(){
+	/*
+	 * Methode provoquant la petrification du personnage
+	 */
+	protected void Stop(){
 		this.tmp=new Direction(dirChar);
 		this.dirChar.setX(0);
 		this.dirChar.setY(0);
 		isPetrified=true;
 	}
-	void Run(){
+	/*
+	 * Methode supprimant l'état de petrification du personnage 
+	 */
+	protected void Run(){
 		isPetrified=false;
 		this.dirChar=new Direction(tmp);
 	}
+	/*
+	 * (non-Javadoc)
+	 * @see Collision#react(Box)
+	 */
 	public void react(Box c){
 		
 		Direction d = new Direction(this.getDirection());
