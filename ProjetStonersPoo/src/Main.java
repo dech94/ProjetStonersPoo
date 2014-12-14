@@ -1,3 +1,8 @@
+/*
+ * Classe Main contenant le main
+ * @author Jules Wacquier & Jeremy Bourde
+ * @version 2.0
+ */
 class Main{
 	public static void main (String[]args) throws InterruptedException{
 		int w,s,r,S,W,time,hauteur,largeur;

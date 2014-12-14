@@ -81,40 +81,40 @@ public abstract class Character extends Box implements Steerable, Collision{
 		
 		Direction d = new Direction(this.getDirection());
 		if(c instanceof Resurrector){
-			System.out.println("changement 1");
+			//System.out.println("changement 1");
 			((Resurrector) c).Run();
 		}else{
 			if(c instanceof Stoner){
-				System.out.println("changement 2");
+				//System.out.println("changement 2");
 				((Stoner) c).Stop();
 			}else{
 				if(c instanceof Walker){
-					System.out.println("changement 3");
+					//System.out.println("changement 3");
 					((Walker) c).dirChar.setX(-((Walker) c).dirChar.getX());
 					((Walker) c).dirChar.setY(-((Walker) c).dirChar.getY());
 					if(!this.isPetrified){
-						System.out.println("changement 4");
+						//System.out.println("changement 4");
 						d.setX(-d.getX());
 						d.setY(-d.getY());
 						this.setDirection(d);
 					}
 				}else{
 					if (c instanceof Wall){
-						System.out.println("changement 5");
+						//System.out.println("changement 5");
 						d.setX(-d.getX());
 						d.setY(-d.getY());
 						this.setDirection(d);
 					}else{
 						if(c instanceof Spin){
-							System.out.println("changement 6");
+							//System.out.println("changement 6");
 							d.setX(((-1)+(int)Math.random()*(1-(-1)+1)));
 							d.setY(((-1)+(int)Math.random()*(1-(-1)+1)));
 							this.setDirection(d);
 						}else{
 							if(c instanceof Vide){
-								System.out.println("rien");
+								//System.out.println("rien");
 							}else{
-								System.out.println("bug");
+								//System.out.println("bug");
 							}
 						}
 					}

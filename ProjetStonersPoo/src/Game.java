@@ -22,7 +22,13 @@ class Game {
 	 * @param nbSpin
 	 * 			nombre de Spin
 	 * @param nbWall
-	 * 			nombre de Wall (sans compter les limites du jeu
+	 * 			nombre de Wall (sans compter les limites du jeu)
+	 * @param hauteur
+	 * 			hauteur du jeu
+	 * @param largeur
+	 * 			largeur du jeu
+	 * @param time
+	 * 			temps entre 2 actions
 	 */
 	Game(int nbWalker, int nbStoner, int nbResurrector, int nbSpin,int nbWall,int hauteur, int largeur, int time){
 		int i,j,k;
@@ -86,10 +92,15 @@ class Game {
 	}
 	/*
 	 * methode permetant de mettre en pause le Thread principal
+	 * @throws Si on a une pause sur le thread principal
 	 */
 	private void Lap(int x) throws InterruptedException{
 		Thread.sleep(x);
 	}
+	/*
+	 * methode permetant de demarer une partie
+	 * @throws Si on a une pause sur le thread principal
+	 */
 	void Play() throws InterruptedException {
 		int k=0;
 		boolean play=true;
@@ -99,18 +110,24 @@ class Game {
 			Iterator<Character> it = listeCharacter.iterator();
 			while (it.hasNext()){
 				Character c=it.next();
+				/* test
 				System.out.println(c.toString());
 				System.out.println("direction="+c.dirChar.getX()+";"+c.dirChar.getY());
 				System.out.println("position ="+c.posChar.getX()+";"+c.posChar.getY());
+				*/
 				c.move();
 				}
-			}
-			k++;
-			System.out.println("\n------------------------------------------------\n\n");
-			if(k==2){
-				play=false;
-			}
 		}
+		k++;
+		System.out.println("\n------------------------------------------------\n\n");
+		if(k==2){
+			play=false;
+		}
+	}
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 		int i,j;
 		String res="";
@@ -122,15 +139,32 @@ class Game {
 		}
 		return res;
 	}
+	/*
+	 * Getter
+	 * @return largeur
+	 */
 	public int getLargeur() {
 		return largeur;
 	}
+	/*
+	 * Getter
+	 * @return hauteur
+	 */
 	public int getHauteur() {
 		return hauteur;
 	}
+	/*
+	 * Getter
+	 * @return t
+	 */
 	public static Box[][] getT() {
 		return t;
 	}
+	/*
+	 * Setter
+	 * @param t
+	 * 			une matrice comprenant des Box
+	 */
 	public void setT(Box[][] t) {
 		Game.t = t;
 	}
