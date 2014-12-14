@@ -1,9 +1,17 @@
-/*
+/**
  * Classe Main contenant le main
- * @author Jules Wacquier & Jeremy Bourde
+ * @author julesWacquier
+ * @author jeremyBourde
  * @version 2.0
  */
-class Main{
+public class Main{
+	/**
+	 * main
+	 * @param args
+	 * 			argument
+	 * @throws InterruptedException
+	 * 			exception si le thread se met en pause
+	 */
 	public static void main (String[]args) throws InterruptedException{
 		int w,s,r,S,W,time,hauteur,largeur;
 		System.out.println("     Stoner 1.0    \n--------------------\n\n");
@@ -24,7 +32,6 @@ class Main{
 		System.out.println("Choisir la duree de la pause entre 2 actions :\n");
 		time=Clavier.saisirInt();
 		Game g = new Game(w,s,r,S,W,hauteur,largeur,time);
-		//System.out.println(g.toString());
 		g.Play();
 	}
 }

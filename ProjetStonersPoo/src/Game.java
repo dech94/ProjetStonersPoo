@@ -1,6 +1,7 @@
-/*
+/**
  * Classe Game permettant d'initialiser le jeu
- * @author Jules Wacquier & Jeremy Bourde
+ * @author julesWacquier
+ * @author jeremyBourde
  * @version 5.0
  */
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ class Game {
 	int time;
 	private static Box[][]t;
 	private ArrayList<Character>listeCharacter;
-	/*
+	/**
 	 * Constructeur d'une partie aléatoire
 	 * @param nbWalker
 	 * 			nombre de Walker
@@ -90,14 +91,14 @@ class Game {
 			}
 		}
 	}
-	/*
+	/**
 	 * methode permetant de mettre en pause le Thread principal
 	 * @throws Si on a une pause sur le thread principal
 	 */
 	private void Lap(int x) throws InterruptedException{
 		Thread.sleep(x);
 	}
-	/*
+	/**
 	 * methode permetant de demarer une partie
 	 * @throws Si on a une pause sur le thread principal
 	 */
@@ -124,7 +125,7 @@ class Game {
 			play=false;
 		}
 	}
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -139,28 +140,28 @@ class Game {
 		}
 		return res;
 	}
-	/*
+	/**
 	 * Getter
 	 * @return largeur
 	 */
 	public int getLargeur() {
 		return largeur;
 	}
-	/*
+	/**
 	 * Getter
 	 * @return hauteur
 	 */
 	public int getHauteur() {
 		return hauteur;
 	}
-	/*
+	/**
 	 * Getter
 	 * @return t
 	 */
 	public static Box[][] getT() {
 		return t;
 	}
-	/*
+	/**
 	 * Setter
 	 * @param t
 	 * 			une matrice comprenant des Box

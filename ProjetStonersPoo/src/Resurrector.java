@@ -1,14 +1,24 @@
-/*
+/**
  * Classe fille de Character
- * @author Jules Wacquier & Jeremy Bourde
+ * @author julesWacquier
+ * @author jeremyBourde
  * @version 2.0
  */
-class Resurrector extends Character {
-
+public class Resurrector extends Character {
+	/**
+	 * Constructeur Resurector
+	 * @param p
+	 * 		Position
+	 * @param d
+	 * 		Direction
+	 */
 	Resurrector(Position p, Direction d){
 		super(p,d);
 	}
-
+	/**
+	 * (non-Javadoc)
+	 * @see Box#toString()
+	 */
 	public String toString(){
 		if(isPetrified){
 			return"r";

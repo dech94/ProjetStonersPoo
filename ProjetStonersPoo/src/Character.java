@@ -1,6 +1,7 @@
-/*
+/**
  * Abstract Class Character implements Steerable and Collision Interface 
- * @author Jules Wacquier & Jeremy Bourde
+ * @author julesWacquier
+ * @author jeremyBourde
  * @version 3.0
  */
 public abstract class Character extends Box implements Steerable, Collision{
@@ -8,7 +9,7 @@ public abstract class Character extends Box implements Steerable, Collision{
 	protected Direction tmp;
 	protected Position posChar;
 	protected boolean isPetrified;
-	/*
+	/**
 	 * Constructeur Character
 	 * @param p
 	 * 		Position du futur personnage
@@ -20,21 +21,21 @@ public abstract class Character extends Box implements Steerable, Collision{
 		this.dirChar = new Direction(d);
 		isPetrified=false;
 	}
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see Steerable#getDirection()
 	 */
 	public Direction getDirection() {
 		return(this.dirChar);
 	}
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see Steerable#setDirection(Direction)
 	 */
 	public void setDirection(Direction d) {
 		this.dirChar=new Direction(d);
 	}
-	/*
+	/**
 	 * Methode permetant de déplacer le personnage
 	 */
 	public void move(){
@@ -57,7 +58,7 @@ public abstract class Character extends Box implements Steerable, Collision{
 		Game.getT()[cible.getX()][cible.getY()]=this;
 		}
 	}
-	/*
+	/**
 	 * Methode provoquant la petrification du personnage
 	 */
 	protected void Stop(){
@@ -66,14 +67,14 @@ public abstract class Character extends Box implements Steerable, Collision{
 		this.dirChar.setY(0);
 		isPetrified=true;
 	}
-	/*
+	/**
 	 * Methode supprimant l'état de petrification du personnage 
 	 */
 	protected void Run(){
 		isPetrified=false;
 		this.dirChar=new Direction(tmp);
 	}
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see Collision#react(Box)
 	 */

@@ -1,11 +1,12 @@
-/*
+/**
  * Classe Direction permetant de stocker une Position
- * @author Jules Wacquier & Jeremy Bourde
+ * @author julesWacquier
+ * @author jeremyBourde
  * @version 2.0
  */
-class Position {
+public class Position {
 	private int x,y;
-	/*
+	/**
 	 * Constructeur de Position
 	 * @param x
 	 * 		future valeure de x;
@@ -16,7 +17,7 @@ class Position {
 		this.x=x;
 		this.y=y;
 	}
-	/*
+	/**
 	 * Constructeur de Position
 	 * @param p
 	 * 		future Position;
@@ -25,14 +26,16 @@ class Position {
 		this.x=p.x;
 		this.y=p.y;
 	}
-	/*
+	/**
 	 * methode testant l'egalite de 2 Positions
+	 * @param p
+	 * 		Position a tester
 	 * @return true si les Positions sont egales 
 	 */
 	public boolean equals(Position p) {
         return (((p.x + p.y) - (this.x + this.y)) == 0);
     }
-	/*
+	/**
 	 * Setter
 	 * @param x
 	 * 		future valeure de x
@@ -40,7 +43,7 @@ class Position {
 	public void setX(int x){
 		this.x=x;
 	}
-	/*
+	/**
 	 * Setter
 	 * @param y
 	 * 		future valeure de y
@@ -48,14 +51,14 @@ class Position {
 	public void setY(int y){
 		this.y=y;
 	}
-	/*
+	/**
 	 * Getter
 	 * @return Valeure de x
 	 */
 	public int getX(){
 		return this.x;
 	}
-	/*
+	/**
 	 * Getter
 	 * @return Valeure de y
 	 */

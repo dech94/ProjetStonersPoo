@@ -1,12 +1,13 @@
-/*
+/**
  * Classe Direction permetant de stocker une direction
- * @author Jules Wacquier & Jeremy Bourde
+ * @author julesWacquier
+ * @author jeremyBourde
  * @version 1.0
  */
 public class Direction {
 	private int x,y;
 	public boolean isCorrect;
-	/*
+	/**
 	 * Constructeur de Direction
 	 * @param x
 	 * 		future valeure de x;
@@ -22,7 +23,7 @@ public class Direction {
 			this.isCorrect=false;
 		}
 	}
-	/*
+	/**
 	 * Constructeur de Direction
 	 * @param d
 	 * 		future Direction;
@@ -31,7 +32,7 @@ public class Direction {
 		this.x=d.x;
 		this.y=d.y;
 	}
-	/*
+	/**
 	 * Setter
 	 * @param x
 	 * 		future valeure de x
@@ -39,7 +40,7 @@ public class Direction {
 	public void setX(int x){
 		this.x=x;
 	}
-	/*
+	/**
 	 * Setter
 	 * @param y
 	 * 		future valeure de y
@@ -47,14 +48,14 @@ public class Direction {
 	public void setY(int y){
 		this.y=y;
 	}
-	/*
+	/**
 	 * Getter
 	 * @return Valeure de x
 	 */
 	public int getX(){
 		return this.x;
 	}
-	/*
+	/**
 	 * Getter
 	 * @return Valeure de y
 	 */
